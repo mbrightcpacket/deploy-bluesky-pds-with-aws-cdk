@@ -26,7 +26,7 @@ services:
       start_interval: 5s
     environment:
       HOME: "/home"
-      PDS_HOSTNAME: "example.com"
+      PDS_HOSTNAME: "doesnotexist.com"
       PDS_PORT: "3000"
       PDS_DATA_DIRECTORY: '/pds'
       PDS_PLC_ROTATION_KEY_KMS_KEY_ID: "${PDS_PLC_ROTATION_KEY_KMS_KEY_ID}"
@@ -44,7 +44,7 @@ services:
       PDS_ADMIN_PASSWORD: "${PDS_ADMIN_PASSWORD}"
       PDS_JWT_SECRET: "${PDS_JWT_SECRET}"
       LOG_ENABLED: true
-      PDS_EMAIL_FROM_ADDRESS: 'hello@example.com'
+      PDS_EMAIL_FROM_ADDRESS: 'hello@doesnotexist.com'
       SMTP_HOST: 'localhost'
       SMTP_MAIL_USERNAME: 'fake'
       SMTP_MAIL_PASSWORD: 'fa//ke'
