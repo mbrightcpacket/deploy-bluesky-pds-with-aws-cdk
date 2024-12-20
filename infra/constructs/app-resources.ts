@@ -107,24 +107,49 @@ export class AppResources extends Construct {
 
     // In production mode, enforce that access to objects is only through the VPC endpoint
     if (props.mode === Mode.PROD) {
-      const s3BucketPolicy = new iam.PolicyStatement({
-        actions: [
-          's3:GetObject*',
-          's3:DeleteObject*',
-          's3:PutObject*',
-          's3:Abort*',
-        ],
-        effect: iam.Effect.DENY,
-        principals: [new iam.AnyPrincipal()],
-        resources: ['*'],
-        conditions: {
-          StringNotEquals: {
-            'aws:sourceVpce': props.network.s3Endpoint.vpcEndpointId,
+      this.blobBucket.addToResourcePolicy(
+        new iam.PolicyStatement({
+          actions: [
+            's3:GetObject*',
+            's3:DeleteObject*',
+            's3:PutObject*',
+            's3:Abort*',
+          ],
+          effect: iam.Effect.DENY,
+          principals: [new iam.AnyPrincipal()],
+          resources: [
+            this.blobBucket.bucketArn,
+            this.blobBucket.arnForObjects('*'),
+          ],
+          conditions: {
+            StringNotEquals: {
+              'aws:sourceVpce': props.network.s3Endpoint.vpcEndpointId,
+            },
           },
-        },
-      });
-      this.blobBucket.addToResourcePolicy(s3BucketPolicy);
-      this.dataBackupBucket.addToResourcePolicy(s3BucketPolicy);
+        })
+      );
+
+      this.dataBackupBucket.addToResourcePolicy(
+        new iam.PolicyStatement({
+          actions: [
+            's3:GetObject*',
+            's3:DeleteObject*',
+            's3:PutObject*',
+            's3:Abort*',
+          ],
+          effect: iam.Effect.DENY,
+          principals: [new iam.AnyPrincipal()],
+          resources: [
+            this.dataBackupBucket.bucketArn,
+            this.dataBackupBucket.arnForObjects('*'),
+          ],
+          conditions: {
+            StringNotEquals: {
+              'aws:sourceVpce': props.network.s3Endpoint.vpcEndpointId,
+            },
+          },
+        })
+      );
     }
 
     // Resources for PDS to send emails
