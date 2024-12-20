@@ -36,7 +36,7 @@ The load balancer terminates TLS, and redirects HTTP to HTTPS.
 is running at a time. In case of an unhealthy task, ECS will terminate the task and
 start a new one in either of the two AZs.
 
-The Fargate task runs two containers:
+The Fargate task runs three containers:
 1. The main **PDS container** uses the
 [official PDS image](https://github.com/bluesky-social/pds/pkgs/container/pds),
 copied into a private [Amazon ECR](https://aws.amazon.com/ecr/) repository.
@@ -55,7 +55,7 @@ On task launch, the sidecar starts before the PDS and restores the on-disk files
 from S3 to the local disk (a shared volume with the PDS container).
 
 For monitoring, container logs are sent to [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/).
-Alarms are configured in CloudWatch on load balancer metrics.
+Alarms are configured in CloudWatch on load balancer metrics and on errors in the logs.
 
 ## Deploy your PDS
 
