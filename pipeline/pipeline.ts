@@ -67,8 +67,8 @@ class BlueskyPdsPipelineStack extends Stack {
     );
     const sourceAction = new actions.CodeStarConnectionsSourceAction({
       actionName: 'GitHubSource',
-      owner: 'clareliguori',
-      repo: 'bluesky-pds-cdk',
+      owner: 'exampleuser',
+      repo: 'deploy-bluesky-pds-with-aws-cdk',
       branch: 'main',
       connectionArn: githubConnection.attrConnectionArn,
       output: sourceOutput,

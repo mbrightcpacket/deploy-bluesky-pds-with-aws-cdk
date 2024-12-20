@@ -14,8 +14,8 @@ You must also have [the AWS CDK CLI installed](https://docs.aws.amazon.com/cdk/v
 ## Customize
 
 Fork this GitHub repository.
-Replace all references to 'clareliguori' with your own GitHub username in your forked repository.
-Replace all references to 'clare.dev' with your own domain name.
+Replace all references to 'exampleuser' with your own GitHub username in your forked repository.
+Replace all references to 'example.com' with your own domain name.
 
 The CDK template will deploy to us-east-2 region by default. If you wish to deploy to a different region,
 find and replace all references to 'us-east-2'.
