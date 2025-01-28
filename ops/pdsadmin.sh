@@ -27,14 +27,14 @@ export PDS_ENV_FILE="${ADMIN_SCRIPT_DIR}/pds.env"
 
 # Get the Secrets Manager secret ID from the CloudFormation output value
 # of the PDS stack.
-PDS_ADMIN_PASSWORD_SECRET_ID="$(aws cloudformation describe-stacks --region us-east-2 --stack-name BlueskyPdsInfra --query 'Stacks[0].Outputs[?OutputKey==`AdminPasswordID`].OutputValue' --output text)"
+PDS_ADMIN_PASSWORD_SECRET_ID="$(aws cloudformation describe-stacks --region us-east-1 --stack-name BlueskyPdsInfra --query 'Stacks[0].Outputs[?OutputKey==`AdminPasswordID`].OutputValue' --output text)"
 if [[ -z "${PDS_ADMIN_PASSWORD_SECRET_ID:-}" ]]; then
   echo "ERROR: PDS admin password secret ID not found from CloudFormation stack"
   exit 1
 fi
 
 # Get the PDS admin password from Secrets Manager.
-PDS_ADMIN_PASSWORD_VALUE="$(aws secretsmanager get-secret-value --region us-east-2 --secret-id $PDS_ADMIN_PASSWORD_SECRET_ID --query SecretString --output text)"
+PDS_ADMIN_PASSWORD_VALUE="$(aws secretsmanager get-secret-value --region us-east-1 --secret-id $PDS_ADMIN_PASSWORD_SECRET_ID --query SecretString --output text)"
 if [[ -z "${PDS_ADMIN_PASSWORD_VALUE:-}" ]]; then
   echo "ERROR: PDS admin password not found"
   exit 1

@@ -2,7 +2,7 @@
 
 This is a rough and likely incorrect estimate of the costs associated with
 self-hosting a PDS using this AWS CDK template. All prices are public
-pricing as of Dec 4, 2024 in us-east-2, extrapolated to an average month
+pricing as of Dec 4, 2024 in us-east-1, extrapolated to an average month
 of 720 hours.
 
 This architecture is certainly not the lowest-cost option for self-hosting a Bluesky PDS.

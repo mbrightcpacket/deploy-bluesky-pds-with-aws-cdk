@@ -17,8 +17,8 @@ Fork this GitHub repository.
 Replace all references to 'exampleuser' with your own GitHub username in your forked repository.
 Replace all references to 'example.com' with your own domain name.
 
-The CDK template will deploy to us-east-2 region by default. If you wish to deploy to a different region,
-find and replace all references to 'us-east-2'.
+The CDK template will deploy to us-east-1 region by default. If you wish to deploy to a different region,
+find and replace all references to 'us-east-1'.
 
 Commit and push these changes to your fork on GitHub.
 
@@ -31,7 +31,7 @@ aws sns create-topic \
     --profile default \
     --name bluesky-pds-notifications \
     --tags Key=project,Value=bluesky-pds \
-    --region us-east-2
+    --region us-east-1
 ```
 
 You can now subscribe an email address or a
@@ -54,7 +54,7 @@ npm install
 
 npm run build
 
-cdk bootstrap --profile default aws://<aws account id>/us-east-2
+cdk bootstrap --profile default aws://<aws account id>/us-east-1
 
 cdk synth --profile default -o build --app 'node service.js'
 
@@ -115,7 +115,7 @@ cdk deploy --profile default --app 'node pipeline.js'
 ### Activate the pipeline
 
 Activate the CodeConnections connection created in the deployment.
-Go to the [CodeConnections console](https://console.aws.amazon.com/codesuite/settings/connections?region=us-east-2),
+Go to the [CodeConnections console](https://console.aws.amazon.com/codesuite/settings/connections?region=us-east-1),
 select the `bluesky-pds` connection, and click "Update pending connection".
 Then follow the prompts to connect your GitHub account and repositories to AWS.
 When finished, the `bluesky-pds` connection should have the "Available" status.
@@ -123,7 +123,7 @@ When finished, the `bluesky-pds` connection should have the "Available" status.
 Now that the pipeline is connected to GitHub, it can now deploy your PDS automatically.
 Go to the pipeline page, and click 'Release change' to start the pipeline flowing.
 
-https://us-east-2.console.aws.amazon.com/codesuite/codepipeline/pipelines/bluesky-pds/view?region=us-east-2
+https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/bluesky-pds/view?region=us-east-1
 
 ### Set up notifications for pipeline failures
 
@@ -132,9 +132,9 @@ Open `guides/sns-topic-policy.json` and replace `{YOUR_AWS_ACCOUNT_ID}` with you
 
 ```bash
 aws sns set-topic-attributes \
-    --topic-arn arn:aws:sns:us-east-2:{YOUR_AWS_ACCOUNT_ID}:bluesky-pds-notifications \
+    --topic-arn arn:aws:sns:us-east-1:{YOUR_AWS_ACCOUNT_ID}:bluesky-pds-notifications \
     --attribute-name Policy \
     --attribute-value file://guides/sns-topic-policy.json \
     --profile default \
-    --region us-east-2
+    --region us-east-1
 ```

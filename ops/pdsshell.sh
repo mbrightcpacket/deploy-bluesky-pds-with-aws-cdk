@@ -21,7 +21,7 @@ TASK_ARN="$(aws ecs list-tasks \
   --desired-status RUNNING \
   --query 'taskArns[0]' \
   --output text \
-  --region us-east-2)"
+  --region us-east-1)"
 
 if [[ -z "${TASK_ARN:-}" ]]; then
   echo "ERROR: task ARN not found"
@@ -30,7 +30,7 @@ fi
 
 # Replace process with execute-command
 exec aws ecs execute-command \
-  --region us-east-2 \
+  --region us-east-1 \
   --cluster $CLUSTER_NAME \
   --task $TASK_ARN \
   --container 'pds' \

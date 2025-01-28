@@ -18,7 +18,7 @@
         "SNS:ListSubscriptionsByTopic",
         "SNS:Publish"
       ],
-      "Resource": "arn:aws:sns:us-east-2:693178525340:bluesky-pds-notifications",
+      "Resource": "arn:aws:sns:us-east-1:693178525340:bluesky-pds-notifications",
       "Condition": {
         "StringEquals": {
           "AWS:SourceOwner": "693178525340"
@@ -32,7 +32,7 @@
         "Service": ["codestar-notifications.amazonaws.com"]
       },
       "Action": "SNS:Publish",
-      "Resource": "arn:aws:sns:us-east-2:693178525340:bluesky-pds-notifications"
+      "Resource": "arn:aws:sns:us-east-1:693178525340:bluesky-pds-notifications"
     }
   ]
 }

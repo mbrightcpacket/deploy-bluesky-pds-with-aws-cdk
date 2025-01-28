@@ -52,7 +52,7 @@ paths to be served:
 
 Logs can be viewed in the ECS console:
 
-https://us-east-2.console.aws.amazon.com/ecs/v2/clusters/pds-example-com/services/pds-example-com/logs?region=us-east-2
+https://us-east-1.console.aws.amazon.com/ecs/v2/clusters/pds-example-com/services/pds-example-com/logs?region=us-east-1
 
 ### Remotely connect to your PDS
 
@@ -82,7 +82,7 @@ For each account email address, create an email address identity in SES.
 ```bash
 aws sesv2 create-email-identity \
     --email-identity your-accounts-email-address@domain.com \
-    --region us-east-2 \
+    --region us-east-1 \
     --profile default
 ```
 That email address will receive an email with a subject line containing
